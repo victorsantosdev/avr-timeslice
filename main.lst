@@ -1,0 +1,76 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	avr_init
+  10               	avr_init:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 80EE      		ldi r24,lo8(-32)
+  16 0002 84B9      		out 0x4,r24
+  17 0004 17B8      		out 0x7,__zero_reg__
+  18 0006 8EE0      		ldi r24,lo8(14)
+  19 0008 8AB9      		out 0xa,r24
+  20 000a 1BB8      		out 0xb,__zero_reg__
+  21 000c 18B8      		out 0x8,__zero_reg__
+  22 000e 15B8      		out 0x5,__zero_reg__
+  23 0010 0895      		ret
+  25               		.section	.text.startup,"ax",@progbits
+  26               	.global	main
+  28               	main:
+  29               	/* prologue: function */
+  30               	/* frame size = 0 */
+  31               	/* stack size = 0 */
+  32               	.L__stack_usage = 0
+  33 0000 0E94 0000 		call avr_init
+  34 0004 0E94 0000 		call TIME_init
+  35 0008 81E0      		ldi r24,lo8(1)
+  36 000a 0E94 0000 		call LED_init
+  37 000e 0E94 0000 		call UART_init
+  38 0012 0E94 0000 		call ADC_init_10bit
+  39 0016 0E94 0000 		call DIGITALRW_init
+  40 001a 84EB      		ldi r24,lo8(-76)
+  41 001c 90E0      		ldi r25,0
+  42 001e 0E94 0000 		call PWM_init
+  43 0022 0E94 0000 		call EXAMPLE_init
+  44               	/* #APP */
+  45               	 ;  64 "main.c" 1
+  46 0026 7894      		sei
+  47               	 ;  0 "" 2
+  48               	/* #NOAPP */
+  49               	.L3:
+  50 0028 0E94 0000 		call TIME_task
+  51 002c 0E94 0000 		call LED_task
+  52 0030 0E94 0000 		call DIGITALRW_task
+  53 0034 0E94 0000 		call PWM_task
+  54 0038 0E94 0000 		call EXAMPLE_task
+  55 003c 00C0      		rjmp .L3
+  57               		.ident	"GCC: (GNU) 4.7.2"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/cc7kXtsA.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc7kXtsA.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc7kXtsA.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc7kXtsA.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc7kXtsA.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc7kXtsA.s:10     .text:0000000000000000 avr_init
+     /tmp/cc7kXtsA.s:28     .text.startup:0000000000000000 main
+
+UNDEFINED SYMBOLS
+TIME_init
+LED_init
+UART_init
+ADC_init_10bit
+DIGITALRW_init
+PWM_init
+EXAMPLE_init
+TIME_task
+LED_task
+DIGITALRW_task
+PWM_task
+EXAMPLE_task

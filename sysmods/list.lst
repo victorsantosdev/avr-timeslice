@@ -1,0 +1,182 @@
+   1               		.file	"list.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	LIST_insert
+  10               	LIST_insert:
+  11 0000 8F92      		push r8
+  12 0002 9F92      		push r9
+  13 0004 AF92      		push r10
+  14 0006 BF92      		push r11
+  15 0008 CF92      		push r12
+  16 000a DF92      		push r13
+  17 000c EF92      		push r14
+  18 000e FF92      		push r15
+  19 0010 0F93      		push r16
+  20 0012 1F93      		push r17
+  21 0014 CF93      		push r28
+  22 0016 DF93      		push r29
+  23 0018 1F92      		push __zero_reg__
+  24 001a CDB7      		in r28,__SP_L__
+  25 001c DEB7      		in r29,__SP_H__
+  26               	/* prologue: function */
+  27               	/* frame size = 1 */
+  28               	/* stack size = 13 */
+  29               	.L__stack_usage = 13
+  30 001e 4C01      		movw r8,r24
+  31 0020 5B01      		movw r10,r22
+  32 0022 6801      		movw r12,r16
+  33 0024 7901      		movw r14,r18
+  34 0026 89E0      		ldi r24,lo8(9)
+  35 0028 90E0      		ldi r25,0
+  36 002a 4983      		std Y+1,r20
+  37 002c 0E94 0000 		call malloc
+  38 0030 FC01      		movw r30,r24
+  39 0032 4981      		ldd r20,Y+1
+  40 0034 0097      		sbiw r24,0
+  41 0036 01F0      		breq .L3
+  42 0038 B182      		std Z+1,r11
+  43 003a A082      		st Z,r10
+  44 003c 4283      		std Z+2,r20
+  45 003e C382      		std Z+3,r12
+  46 0040 D482      		std Z+4,r13
+  47 0042 E582      		std Z+5,r14
+  48 0044 F682      		std Z+6,r15
+  49 0046 D401      		movw r26,r8
+  50 0048 8D91      		ld r24,X+
+  51 004a 9C91      		ld r25,X
+  52 004c 1197      		sbiw r26,1
+  53 004e 9087      		std Z+8,r25
+  54 0050 8783      		std Z+7,r24
+  55 0052 ED93      		st X+,r30
+  56 0054 FC93      		st X,r31
+  57 0056 20E0      		ldi r18,0
+  58 0058 30E0      		ldi r19,0
+  59 005a 00C0      		rjmp .L2
+  60               	.L3:
+  61 005c 2FEF      		ldi r18,lo8(-1)
+  62 005e 3FEF      		ldi r19,lo8(-1)
+  63               	.L2:
+  64 0060 C901      		movw r24,r18
+  65               	/* epilogue start */
+  66 0062 0F90      		pop __tmp_reg__
+  67 0064 DF91      		pop r29
+  68 0066 CF91      		pop r28
+  69 0068 1F91      		pop r17
+  70 006a 0F91      		pop r16
+  71 006c FF90      		pop r15
+  72 006e EF90      		pop r14
+  73 0070 DF90      		pop r13
+  74 0072 CF90      		pop r12
+  75 0074 BF90      		pop r11
+  76 0076 AF90      		pop r10
+  77 0078 9F90      		pop r9
+  78 007a 8F90      		pop r8
+  79 007c 0895      		ret
+  81               	.global	LIST_remove_expired
+  83               	LIST_remove_expired:
+  84 007e 6F92      		push r6
+  85 0080 7F92      		push r7
+  86 0082 8F92      		push r8
+  87 0084 9F92      		push r9
+  88 0086 AF92      		push r10
+  89 0088 BF92      		push r11
+  90 008a CF92      		push r12
+  91 008c DF92      		push r13
+  92 008e EF92      		push r14
+  93 0090 FF92      		push r15
+  94 0092 0F93      		push r16
+  95 0094 1F93      		push r17
+  96 0096 CF93      		push r28
+  97 0098 DF93      		push r29
+  98               	/* prologue: function */
+  99               	/* frame size = 0 */
+ 100               	/* stack size = 14 */
+ 101               	.L__stack_usage = 14
+ 102 009a 8C01      		movw r16,r24
+ 103 009c 6A01      		movw r12,r20
+ 104 009e 7B01      		movw r14,r22
+ 105 00a0 5901      		movw r10,r18
+ 106 00a2 FC01      		movw r30,r24
+ 107 00a4 C081      		ld r28,Z
+ 108 00a6 D181      		ldd r29,Z+1
+ 109 00a8 4E01      		movw r8,r28
+ 110 00aa 00C0      		rjmp .L5
+ 111               	.L10:
+ 112 00ac 8B81      		ldd r24,Y+3
+ 113 00ae 9C81      		ldd r25,Y+4
+ 114 00b0 AD81      		ldd r26,Y+5
+ 115 00b2 BE81      		ldd r27,Y+6
+ 116 00b4 C816      		cp r12,r24
+ 117 00b6 D906      		cpc r13,r25
+ 118 00b8 EA06      		cpc r14,r26
+ 119 00ba FB06      		cpc r15,r27
+ 120 00bc 00F0      		brlo .L6
+ 121 00be 6A81      		ldd r22,Y+2
+ 122 00c0 8881      		ld r24,Y
+ 123 00c2 9981      		ldd r25,Y+1
+ 124 00c4 F501      		movw r30,r10
+ 125 00c6 0995      		icall
+ 126 00c8 6F80      		ldd r6,Y+7
+ 127 00ca 7884      		ldd r7,Y+8
+ 128 00cc F801      		movw r30,r16
+ 129 00ce 8081      		ld r24,Z
+ 130 00d0 9181      		ldd r25,Z+1
+ 131 00d2 C817      		cp r28,r24
+ 132 00d4 D907      		cpc r29,r25
+ 133 00d6 01F4      		brne .L7
+ 134 00d8 6082      		st Z,r6
+ 135 00da 7182      		std Z+1,r7
+ 136 00dc 00C0      		rjmp .L8
+ 137               	.L7:
+ 138 00de F401      		movw r30,r8
+ 139 00e0 6782      		std Z+7,r6
+ 140 00e2 7086      		std Z+8,r7
+ 141               	.L8:
+ 142 00e4 CE01      		movw r24,r28
+ 143 00e6 0E94 0000 		call free
+ 144 00ea 00C0      		rjmp .L9
+ 145               	.L6:
+ 146 00ec 6F80      		ldd r6,Y+7
+ 147 00ee 7884      		ldd r7,Y+8
+ 148 00f0 4E01      		movw r8,r28
+ 149               	.L9:
+ 150 00f2 E301      		movw r28,r6
+ 151               	.L5:
+ 152 00f4 2097      		sbiw r28,0
+ 153 00f6 01F4      		brne .L10
+ 154 00f8 80E0      		ldi r24,0
+ 155 00fa 90E0      		ldi r25,0
+ 156               	/* epilogue start */
+ 157 00fc DF91      		pop r29
+ 158 00fe CF91      		pop r28
+ 159 0100 1F91      		pop r17
+ 160 0102 0F91      		pop r16
+ 161 0104 FF90      		pop r15
+ 162 0106 EF90      		pop r14
+ 163 0108 DF90      		pop r13
+ 164 010a CF90      		pop r12
+ 165 010c BF90      		pop r11
+ 166 010e AF90      		pop r10
+ 167 0110 9F90      		pop r9
+ 168 0112 8F90      		pop r8
+ 169 0114 7F90      		pop r7
+ 170 0116 6F90      		pop r6
+ 171 0118 0895      		ret
+ 173               		.ident	"GCC: (GNU) 4.7.2"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 list.c
+     /tmp/cc6LmddE.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc6LmddE.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc6LmddE.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc6LmddE.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc6LmddE.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc6LmddE.s:10     .text:0000000000000000 LIST_insert
+     /tmp/cc6LmddE.s:83     .text:000000000000007e LIST_remove_expired
+
+UNDEFINED SYMBOLS
+malloc
+free

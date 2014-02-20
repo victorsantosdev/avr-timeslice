@@ -1,0 +1,132 @@
+   1               		.file	"pwm.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	PWM_reset_expired
+  10               	PWM_reset_expired:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 2FEF      		ldi r18,lo8(-1)
+  16 0002 FC01      		movw r30,r24
+  17 0004 2083      		st Z,r18
+  18 0006 0895      		ret
+  20               	.global	PWM_init
+  22               	PWM_init:
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	/* stack size = 0 */
+  26               	.L__stack_usage = 0
+  27 0008 8834      		cpi r24,72
+  28 000a 9105      		cpc r25,__zero_reg__
+  29 000c 01F0      		breq .L5
+  30 000e 00F4      		brsh .L8
+  31 0010 8734      		cpi r24,71
+  32 0012 9105      		cpc r25,__zero_reg__
+  33 0014 01F4      		brne .L2
+  34 0016 00C0      		rjmp .L4
+  35               	.L8:
+  36 0018 833B      		cpi r24,-77
+  37 001a 9105      		cpc r25,__zero_reg__
+  38 001c 01F0      		breq .L6
+  39 001e 843B      		cpi r24,-76
+  40 0020 9105      		cpc r25,__zero_reg__
+  41 0022 01F4      		brne .L2
+  42 0024 00C0      		rjmp .L7
+  43               	.L4:
+  44 0026 84B5      		in r24,0x24
+  45 0028 836C      		ori r24,lo8(-61)
+  46 002a 00C0      		rjmp .L9
+  47               	.L5:
+  48 002c 84B5      		in r24,0x24
+  49 002e 8363      		ori r24,lo8(51)
+  50               	.L9:
+  51 0030 84BD      		out 0x24,r24
+  52 0032 85B5      		in r24,0x25
+  53 0034 8160      		ori r24,lo8(1)
+  54 0036 85BD      		out 0x25,r24
+  55 0038 0895      		ret
+  56               	.L6:
+  57 003a 8091 B000 		lds r24,176
+  58 003e 836C      		ori r24,lo8(-61)
+  59 0040 00C0      		rjmp .L10
+  60               	.L7:
+  61 0042 8091 B000 		lds r24,176
+  62 0046 8363      		ori r24,lo8(51)
+  63               	.L10:
+  64 0048 8093 B000 		sts 176,r24
+  65 004c 8091 B100 		lds r24,177
+  66 0050 8160      		ori r24,lo8(1)
+  67 0052 8093 B100 		sts 177,r24
+  68               	.L2:
+  69 0056 0895      		ret
+  71               	.global	PWM_write_timed
+  73               	PWM_write_timed:
+  74 0058 0F93      		push r16
+  75 005a 1F93      		push r17
+  76               	/* prologue: function */
+  77               	/* frame size = 0 */
+  78               	/* stack size = 2 */
+  79               	.L__stack_usage = 2
+  80 005c 8901      		movw r16,r18
+  81 005e 9A01      		movw r18,r20
+  82 0060 FC01      		movw r30,r24
+  83 0062 6083      		st Z,r22
+  84 0064 4091 0000 		lds r20,PWM_timer
+  85 0068 5091 0000 		lds r21,PWM_timer+1
+  86 006c 6091 0000 		lds r22,PWM_timer+2
+  87 0070 7091 0000 		lds r23,PWM_timer+3
+  88 0074 040F      		add r16,r20
+  89 0076 151F      		adc r17,r21
+  90 0078 261F      		adc r18,r22
+  91 007a 371F      		adc r19,r23
+  92 007c 40E0      		ldi r20,0
+  93 007e BC01      		movw r22,r24
+  94 0080 80E0      		ldi r24,lo8(PWM_head)
+  95 0082 90E0      		ldi r25,hi8(PWM_head)
+  96 0084 0E94 0000 		call LIST_insert
+  97               	/* epilogue start */
+  98 0088 1F91      		pop r17
+  99 008a 0F91      		pop r16
+ 100 008c 0895      		ret
+ 102               	.global	PWM_task
+ 104               	PWM_task:
+ 105               	/* prologue: function */
+ 106               	/* frame size = 0 */
+ 107               	/* stack size = 0 */
+ 108               	.L__stack_usage = 0
+ 109 008e 4091 0000 		lds r20,PWM_timer
+ 110 0092 5091 0000 		lds r21,PWM_timer+1
+ 111 0096 6091 0000 		lds r22,PWM_timer+2
+ 112 009a 7091 0000 		lds r23,PWM_timer+3
+ 113 009e 20E0      		ldi r18,lo8(gs(PWM_reset_expired))
+ 114 00a0 30E0      		ldi r19,hi8(gs(PWM_reset_expired))
+ 115 00a2 80E0      		ldi r24,lo8(PWM_head)
+ 116 00a4 90E0      		ldi r25,hi8(PWM_head)
+ 117 00a6 0C94 0000 		jmp LIST_remove_expired
+ 119               		.comm	PWM_head,2,1
+ 120               		.comm	PWM_timer,4,1
+ 121               		.ident	"GCC: (GNU) 4.7.2"
+ 122               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 pwm.c
+     /tmp/ccDk1yKH.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccDk1yKH.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccDk1yKH.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccDk1yKH.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccDk1yKH.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccDk1yKH.s:10     .text:0000000000000000 PWM_reset_expired
+     /tmp/ccDk1yKH.s:22     .text:0000000000000008 PWM_init
+     /tmp/ccDk1yKH.s:73     .text:0000000000000058 PWM_write_timed
+                            *COM*:0000000000000004 PWM_timer
+                            *COM*:0000000000000002 PWM_head
+     /tmp/ccDk1yKH.s:104    .text:000000000000008e PWM_task
+
+UNDEFINED SYMBOLS
+LIST_insert
+LIST_remove_expired
+__do_clear_bss

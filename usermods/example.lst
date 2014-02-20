@@ -1,0 +1,107 @@
+   1               		.file	"example.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	EXAMPLE_init
+  10               	EXAMPLE_init:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 0895      		ret
+  17               		.section	.rodata.str1.1,"aMS",@progbits,1
+  18               	.LC0:
+  19 0000 5772 6974 		.string	"Writing %u to the PWM pin.\n"
+  19      696E 6720 
+  19      2575 2074 
+  19      6F20 7468 
+  19      6520 5057 
+  20               	.LC1:
+  21 001c 0909 0909 		.string	"\t\t\t\tVoltage divider reads: %u\n"
+  21      566F 6C74 
+  21      6167 6520 
+  21      6469 7669 
+  21      6465 7220 
+  22               		.text
+  23               	.global	EXAMPLE_task
+  25               	EXAMPLE_task:
+  26               	/* prologue: function */
+  27               	/* frame size = 0 */
+  28               	/* stack size = 0 */
+  29               	.L__stack_usage = 0
+  30 0002 4C9B      		sbis 0x9,4
+  31 0004 00C0      		rjmp .L3
+  32 0006 5A9A      		sbi 0xb,2
+  33 0008 00C0      		rjmp .L4
+  34               	.L3:
+  35 000a 5A98      		cbi 0xb,2
+  36               	.L4:
+  37 000c 8091 0000 		lds r24,EXAMPLE_timer_pwm
+  38 0010 8230      		cpi r24,lo8(2)
+  39 0012 00F0      		brlo .L5
+  40 0014 1092 0000 		sts EXAMPLE_timer_pwm,__zero_reg__
+  41 0018 8091 0000 		lds r24,pwm_value
+  42 001c 1F92      		push __zero_reg__
+  43 001e 8F93      		push r24
+  44 0020 80E0      		ldi r24,lo8(.LC0)
+  45 0022 90E0      		ldi r25,hi8(.LC0)
+  46 0024 9F93      		push r25
+  47 0026 8F93      		push r24
+  48 0028 0E94 0000 		call printf
+  49 002c 8091 0000 		lds r24,pwm_value
+  50 0030 8093 B400 		sts 180,r24
+  51 0034 8F5F      		subi r24,lo8(-(1))
+  52 0036 8093 0000 		sts pwm_value,r24
+  53 003a 0F90      		pop __tmp_reg__
+  54 003c 0F90      		pop __tmp_reg__
+  55 003e 0F90      		pop __tmp_reg__
+  56 0040 0F90      		pop __tmp_reg__
+  57               	.L5:
+  58 0042 8091 0000 		lds r24,EXAMPLE_timer_adc
+  59 0046 8431      		cpi r24,lo8(20)
+  60 0048 00F0      		brlo .L2
+  61 004a 1092 0000 		sts EXAMPLE_timer_adc,__zero_reg__
+  62 004e 80E0      		ldi r24,0
+  63 0050 0E94 0000 		call ADC_read_10bit
+  64 0054 9F93      		push r25
+  65 0056 8F93      		push r24
+  66 0058 80E0      		ldi r24,lo8(.LC1)
+  67 005a 90E0      		ldi r25,hi8(.LC1)
+  68 005c 9F93      		push r25
+  69 005e 8F93      		push r24
+  70 0060 0E94 0000 		call printf
+  71 0064 0F90      		pop __tmp_reg__
+  72 0066 0F90      		pop __tmp_reg__
+  73 0068 0F90      		pop __tmp_reg__
+  74 006a 0F90      		pop __tmp_reg__
+  75               	.L2:
+  76 006c 0895      		ret
+  78               		.comm	second,1,1
+  79               		.comm	pwm_value,1,1
+  80               		.comm	EXAMPLE_timer_adc,1,1
+  81               		.comm	EXAMPLE_timer_pwm,1,1
+  82               		.ident	"GCC: (GNU) 4.7.2"
+  83               	.global __do_copy_data
+  84               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 example.c
+     /tmp/ccirhWVJ.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccirhWVJ.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccirhWVJ.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccirhWVJ.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccirhWVJ.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccirhWVJ.s:10     .text:0000000000000000 EXAMPLE_init
+     /tmp/ccirhWVJ.s:25     .text:0000000000000002 EXAMPLE_task
+                            *COM*:0000000000000001 EXAMPLE_timer_pwm
+                            *COM*:0000000000000001 pwm_value
+                            *COM*:0000000000000001 EXAMPLE_timer_adc
+                            *COM*:0000000000000001 second
+
+UNDEFINED SYMBOLS
+printf
+ADC_read_10bit
+__do_copy_data
+__do_clear_bss

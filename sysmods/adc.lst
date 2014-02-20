@@ -1,0 +1,136 @@
+   1               		.file	"adc.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   9               	ADC_read_aux:
+  10               	/* prologue: function */
+  11               	/* frame size = 0 */
+  12               	/* stack size = 0 */
+  13               	.L__stack_usage = 0
+  14 0000 9091 7C00 		lds r25,124
+  15 0004 907F      		andi r25,lo8(-16)
+  16 0006 9093 7C00 		sts 124,r25
+  17 000a 9091 7C00 		lds r25,124
+  18 000e 982B      		or r25,r24
+  19 0010 9093 7C00 		sts 124,r25
+  20 0014 8091 7A00 		lds r24,122
+  21 0018 8064      		ori r24,lo8(64)
+  22 001a 8093 7A00 		sts 122,r24
+  23               	.L2:
+  24 001e 8091 7A00 		lds r24,122
+  25 0022 86FD      		sbrc r24,6
+  26 0024 00C0      		rjmp .L2
+  27               	/* epilogue start */
+  28 0026 0895      		ret
+  30               	.global	ADC_init_10bit
+  32               	ADC_init_10bit:
+  33               	/* prologue: function */
+  34               	/* frame size = 0 */
+  35               	/* stack size = 0 */
+  36               	.L__stack_usage = 0
+  37 0028 80E4      		ldi r24,lo8(64)
+  38 002a 8093 7C00 		sts 124,r24
+  39 002e EAE7      		ldi r30,lo8(122)
+  40 0030 F0E0      		ldi r31,0
+  41 0032 87E0      		ldi r24,lo8(7)
+  42 0034 8083      		st Z,r24
+  43 0036 8081      		ld r24,Z
+  44 0038 8068      		ori r24,lo8(-128)
+  45 003a 8083      		st Z,r24
+  46 003c 0895      		ret
+  48               	.global	ADC_init_8bit
+  50               	ADC_init_8bit:
+  51               	/* prologue: function */
+  52               	/* frame size = 0 */
+  53               	/* stack size = 0 */
+  54               	.L__stack_usage = 0
+  55 003e 80E6      		ldi r24,lo8(96)
+  56 0040 8093 7C00 		sts 124,r24
+  57 0044 EAE7      		ldi r30,lo8(122)
+  58 0046 F0E0      		ldi r31,0
+  59 0048 85E0      		ldi r24,lo8(5)
+  60 004a 8083      		st Z,r24
+  61 004c 8081      		ld r24,Z
+  62 004e 8068      		ori r24,lo8(-128)
+  63 0050 8083      		st Z,r24
+  64 0052 0895      		ret
+  66               	.global	ADC_read_10bit
+  68               	ADC_read_10bit:
+  69               	/* prologue: function */
+  70               	/* frame size = 0 */
+  71               	/* stack size = 0 */
+  72               	.L__stack_usage = 0
+  73 0054 0E94 0000 		call ADC_read_aux
+  74 0058 2091 7800 		lds r18,120
+  75 005c 3091 7900 		lds r19,120+1
+  76 0060 C901      		movw r24,r18
+  77 0062 0895      		ret
+  79               	.global	ADC_read_8bit
+  81               	ADC_read_8bit:
+  82               	/* prologue: function */
+  83               	/* frame size = 0 */
+  84               	/* stack size = 0 */
+  85               	.L__stack_usage = 0
+  86 0064 0E94 0000 		call ADC_read_aux
+  87 0068 8091 7900 		lds r24,121
+  88 006c 0895      		ret
+  90               	.global	ADC_off
+  92               	ADC_off:
+  93               	/* prologue: function */
+  94               	/* frame size = 0 */
+  95               	/* stack size = 0 */
+  96               	.L__stack_usage = 0
+  97 006e EAE7      		ldi r30,lo8(122)
+  98 0070 F0E0      		ldi r31,0
+  99 0072 8081      		ld r24,Z
+ 100 0074 8F77      		andi r24,lo8(127)
+ 101 0076 8083      		st Z,r24
+ 102 0078 0895      		ret
+ 104               	.global	ADC_ref_AVCC
+ 106               	ADC_ref_AVCC:
+ 107               	/* prologue: function */
+ 108               	/* frame size = 0 */
+ 109               	/* stack size = 0 */
+ 110               	.L__stack_usage = 0
+ 111 007a ECE7      		ldi r30,lo8(124)
+ 112 007c F0E0      		ldi r31,0
+ 113 007e 8081      		ld r24,Z
+ 114 0080 8064      		ori r24,lo8(64)
+ 115 0082 8083      		st Z,r24
+ 116 0084 8081      		ld r24,Z
+ 117 0086 8F77      		andi r24,lo8(127)
+ 118 0088 8083      		st Z,r24
+ 119 008a 0895      		ret
+ 121               	.global	ADC_ref_1V
+ 123               	ADC_ref_1V:
+ 124               	/* prologue: function */
+ 125               	/* frame size = 0 */
+ 126               	/* stack size = 0 */
+ 127               	.L__stack_usage = 0
+ 128 008c ECE7      		ldi r30,lo8(124)
+ 129 008e F0E0      		ldi r31,0
+ 130 0090 8081      		ld r24,Z
+ 131 0092 806C      		ori r24,lo8(-64)
+ 132 0094 8083      		st Z,r24
+ 133 0096 0895      		ret
+ 135               		.ident	"GCC: (GNU) 4.7.2"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 adc.c
+     /tmp/ccJSbz1y.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccJSbz1y.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccJSbz1y.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccJSbz1y.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccJSbz1y.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccJSbz1y.s:9      .text:0000000000000000 ADC_read_aux
+     /tmp/ccJSbz1y.s:32     .text:0000000000000028 ADC_init_10bit
+     /tmp/ccJSbz1y.s:50     .text:000000000000003e ADC_init_8bit
+     /tmp/ccJSbz1y.s:68     .text:0000000000000054 ADC_read_10bit
+     /tmp/ccJSbz1y.s:81     .text:0000000000000064 ADC_read_8bit
+     /tmp/ccJSbz1y.s:92     .text:000000000000006e ADC_off
+     /tmp/ccJSbz1y.s:106    .text:000000000000007a ADC_ref_AVCC
+     /tmp/ccJSbz1y.s:123    .text:000000000000008c ADC_ref_1V
+
+NO UNDEFINED SYMBOLS

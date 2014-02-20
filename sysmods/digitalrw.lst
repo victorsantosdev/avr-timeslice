@@ -1,0 +1,127 @@
+   1               		.file	"digitalrw.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	DIGITALRW_toggle_func
+  10               	DIGITALRW_toggle_func:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 FC01      		movw r30,r24
+  16 0002 4081      		ld r20,Z
+  17 0004 21E0      		ldi r18,lo8(1)
+  18 0006 30E0      		ldi r19,0
+  19 0008 062E      		mov r0,r22
+  20 000a 00C0      		rjmp 2f
+  21               		1:
+  22 000c 220F      		lsl r18
+  23               		2:
+  24 000e 0A94      		dec r0
+  25 0010 02F4      		brpl 1b
+  26 0012 4227      		eor r20,r18
+  27 0014 4083      		st Z,r20
+  28 0016 0895      		ret
+  30               	.global	DIGITALRW_init
+  32               	DIGITALRW_init:
+  33               	/* prologue: function */
+  34               	/* frame size = 0 */
+  35               	/* stack size = 0 */
+  36               	.L__stack_usage = 0
+  37 0018 0895      		ret
+  39               	.global	DIGITALRW_write_timed
+  41               	DIGITALRW_write_timed:
+  42 001a CF92      		push r12
+  43 001c DF92      		push r13
+  44 001e EF92      		push r14
+  45 0020 FF92      		push r15
+  46 0022 0F93      		push r16
+  47 0024 1F93      		push r17
+  48               	/* prologue: function */
+  49               	/* frame size = 0 */
+  50               	/* stack size = 6 */
+  51               	.L__stack_usage = 6
+  52 0026 FC01      		movw r30,r24
+  53 0028 6801      		movw r12,r16
+  54 002a 7901      		movw r14,r18
+  55 002c 2081      		ld r18,Z
+  56 002e 81E0      		ldi r24,lo8(1)
+  57 0030 90E0      		ldi r25,0
+  58 0032 062E      		mov r0,r22
+  59 0034 00C0      		rjmp 2f
+  60               		1:
+  61 0036 880F      		lsl r24
+  62               		2:
+  63 0038 0A94      		dec r0
+  64 003a 02F4      		brpl 1b
+  65 003c 4423      		tst r20
+  66 003e 01F0      		breq .L4
+  67 0040 282B      		or r18,r24
+  68 0042 2083      		st Z,r18
+  69 0044 00C0      		rjmp .L5
+  70               	.L4:
+  71 0046 8095      		com r24
+  72 0048 8223      		and r24,r18
+  73 004a 8083      		st Z,r24
+  74               	.L5:
+  75 004c 0091 0000 		lds r16,DIGITALRW_timer
+  76 0050 1091 0000 		lds r17,DIGITALRW_timer+1
+  77 0054 2091 0000 		lds r18,DIGITALRW_timer+2
+  78 0058 3091 0000 		lds r19,DIGITALRW_timer+3
+  79 005c 0C0D      		add r16,r12
+  80 005e 1D1D      		adc r17,r13
+  81 0060 2E1D      		adc r18,r14
+  82 0062 3F1D      		adc r19,r15
+  83 0064 462F      		mov r20,r22
+  84 0066 BF01      		movw r22,r30
+  85 0068 80E0      		ldi r24,lo8(DIGITALRW_head)
+  86 006a 90E0      		ldi r25,hi8(DIGITALRW_head)
+  87 006c 0E94 0000 		call LIST_insert
+  88               	/* epilogue start */
+  89 0070 1F91      		pop r17
+  90 0072 0F91      		pop r16
+  91 0074 FF90      		pop r15
+  92 0076 EF90      		pop r14
+  93 0078 DF90      		pop r13
+  94 007a CF90      		pop r12
+  95 007c 0895      		ret
+  97               	.global	DIGITALRW_task
+  99               	DIGITALRW_task:
+ 100               	/* prologue: function */
+ 101               	/* frame size = 0 */
+ 102               	/* stack size = 0 */
+ 103               	.L__stack_usage = 0
+ 104 007e 4091 0000 		lds r20,DIGITALRW_timer
+ 105 0082 5091 0000 		lds r21,DIGITALRW_timer+1
+ 106 0086 6091 0000 		lds r22,DIGITALRW_timer+2
+ 107 008a 7091 0000 		lds r23,DIGITALRW_timer+3
+ 108 008e 20E0      		ldi r18,lo8(gs(DIGITALRW_toggle_func))
+ 109 0090 30E0      		ldi r19,hi8(gs(DIGITALRW_toggle_func))
+ 110 0092 80E0      		ldi r24,lo8(DIGITALRW_head)
+ 111 0094 90E0      		ldi r25,hi8(DIGITALRW_head)
+ 112 0096 0C94 0000 		jmp LIST_remove_expired
+ 114               		.comm	DIGITALRW_head,2,1
+ 115               		.comm	DIGITALRW_timer,4,1
+ 116               		.ident	"GCC: (GNU) 4.7.2"
+ 117               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 digitalrw.c
+     /tmp/ccUFgIAD.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccUFgIAD.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccUFgIAD.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccUFgIAD.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccUFgIAD.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccUFgIAD.s:10     .text:0000000000000000 DIGITALRW_toggle_func
+     /tmp/ccUFgIAD.s:32     .text:0000000000000018 DIGITALRW_init
+     /tmp/ccUFgIAD.s:41     .text:000000000000001a DIGITALRW_write_timed
+                            *COM*:0000000000000004 DIGITALRW_timer
+                            *COM*:0000000000000002 DIGITALRW_head
+     /tmp/ccUFgIAD.s:99     .text:000000000000007e DIGITALRW_task
+
+UNDEFINED SYMBOLS
+LIST_insert
+LIST_remove_expired
+__do_clear_bss

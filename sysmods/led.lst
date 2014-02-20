@@ -1,0 +1,72 @@
+   1               		.file	"led.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	LED_init
+  10               	LED_init:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 880F      		lsl r24
+  16 0002 8150      		subi r24,lo8(-(-1))
+  17 0004 8093 0000 		sts led_num_toggles,r24
+  18 0008 0895      		ret
+  20               	.global	LED_task
+  22               	LED_task:
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	/* stack size = 0 */
+  26               	.L__stack_usage = 0
+  27 000a 9091 0000 		lds r25,led_toggle_n.1553
+  28 000e 8091 0000 		lds r24,LED_timer
+  29 0012 9111      		cpse r25,__zero_reg__
+  30 0014 00C0      		rjmp .L3
+  31 0016 8233      		cpi r24,lo8(50)
+  32 0018 00F0      		brlo .L3
+  33 001a 85B1      		in r24,0x5
+  34 001c 90E2      		ldi r25,lo8(32)
+  35 001e 8927      		eor r24,r25
+  36 0020 85B9      		out 0x5,r24
+  37 0022 1092 0000 		sts LED_timer,__zero_reg__
+  38 0026 8091 0000 		lds r24,led_num_toggles
+  39 002a 00C0      		rjmp .L5
+  40               	.L3:
+  41 002c 8431      		cpi r24,lo8(20)
+  42 002e 00F0      		brlo .L2
+  43 0030 85B1      		in r24,0x5
+  44 0032 90E2      		ldi r25,lo8(32)
+  45 0034 8927      		eor r24,r25
+  46 0036 85B9      		out 0x5,r24
+  47 0038 1092 0000 		sts LED_timer,__zero_reg__
+  48 003c 8091 0000 		lds r24,led_toggle_n.1553
+  49 0040 8150      		subi r24,lo8(-(-1))
+  50               	.L5:
+  51 0042 8093 0000 		sts led_toggle_n.1553,r24
+  52               	.L2:
+  53 0046 0895      		ret
+  55               		.comm	LED_timer,1,1
+  56               		.local	led_num_toggles
+  57               		.comm	led_num_toggles,1,1
+  58               		.local	led_toggle_n.1553
+  59               		.comm	led_toggle_n.1553,1,1
+  60               		.ident	"GCC: (GNU) 4.7.2"
+  61               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 led.c
+     /tmp/cce79RgC.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cce79RgC.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cce79RgC.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cce79RgC.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cce79RgC.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cce79RgC.s:10     .text:0000000000000000 LED_init
+                             .bss:0000000000000000 led_num_toggles
+     /tmp/cce79RgC.s:22     .text:000000000000000a LED_task
+     /tmp/cce79RgC.s:57     .bss:0000000000000001 led_toggle_n.1553
+                            *COM*:0000000000000001 LED_timer
+
+UNDEFINED SYMBOLS
+__do_clear_bss

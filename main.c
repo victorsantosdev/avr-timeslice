@@ -115,13 +115,16 @@ void uartInit(void) {  /* testado: OK */
 }
 
 /*************************************************************************
-Function: buzzer_init
-Purpose:  configures the pin used by buzzer, to alarm obstacles
+Function: alarm_init
+Purpose:  configures the leds to alarm obstacles
  **************************************************************************/
-void buzzer_init(void){
-	ALARM_DDR |= _BV(ALARM_BIT);
+void alarm_init(void){
+	ALARM_DDR_RED |=  _BV(ALARM_BIT_RED) ;
+	ALARM_DDR_GREEN |=  _BV(ALARM_BIT_GREEN) ;
 }
-
+#define DEBUG_PIN1 PC3
+#define DEBUG_PIN2 PC4
+#define DEBUG_PIN3 PC5
 
 /* Main cicle. Initializes modules and calls their tasks in round-robin. */
 int main(void) {
@@ -133,12 +136,14 @@ int main(void) {
 	//ADC_init_10bit();
 	//DIGITALRW_init();
 	//PWM_init(&EXAMPLE_PWM_PIN);
+	DDRC |= (_BV(DEBUG_PIN1) | _BV(DEBUG_PIN2) | _BV(DEBUG_PIN3));
 
 	/* usermods init */
 	uartInit();
 	ADC_init();
 	timer0_init();
-	buzzer_init();
+	alarm_init();
+
 	ROBOT_init();
 	enable_interrupts; /* Enables all interrupts (node.h) */
 	

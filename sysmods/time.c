@@ -1,4 +1,4 @@
- /*
+/*
  * time.c
  * Copyright (C) 2002-2011 Renato Jorge Caleira Nunes renato.nunes@ist.utl.pt
  * Copyright (C) 2013 David Ludovino david.ludovino@gmail.com
@@ -38,6 +38,12 @@
 #include "pwm.h"
 #include "../usermods/example.h"
 #include "../usermods/robot.h"
+#include "../usermods/LS_ATmega328.h"
+
+
+#define DEBUG_PIN1 PC3
+#define DEBUG_PIN2 PC4
+#define DEBUG_PIN3 PC5
 /* Local variables */
 static uint8_t TIME_curr_time; /* incremented at each 200 us interruption */
 static uint8_t TIME_last_time;
@@ -46,21 +52,22 @@ static uint8_t TIME_last_time;
 void TIME_init(void) {
 	/* Timer/Counter Control Register (p. 139)
 	 * clock select: CLK/64 (16MHz/64=250KHZ -> 4us) */
-	TCCR1B = _BV(CS11) | _BV(CS10);
- 
-	OCR1A = 50; /* 50 units of 4us (check above) = 200us */
-	
+	TCCR2B |= _BV(CS22);
+
+	OCR2A = 50; /* 50 units of 4us (check above) = 200us */
+
 	/* Timer/Counter Interrupt Mask Register (p. 141)
 	 * enable "Timer/Counter1 Compare Match A" interrupt */
-	TIMSK1 = _BV(OCIE1A);
+	TIMSK2 = _BV(OCIE2A);
 }
 
 /* Interruption "Compare Match A" handling routine (IHR) for timer 1.
  * The declaration follows the directives for WinAVR and avr-gcc.
  * An interruption is risen every 200 us (for a 16 MHz crystal). */
-ISR(TIMER1_COMPA_vect) {
-	OCR1A += 50;
+ISR(TIMER2_COMPA_vect) {
+	OCR2A += 50;
 	++TIME_curr_time;
+	//cpl_bit(PORTC, DEBUG_PIN3);
 }
 
 #define TIME_1MS_N200US    5  /* 1 ms = 5 * 200 us */
@@ -88,7 +95,7 @@ void TIME_task(void) {
 
 #if 0  
 /* Copy to above the necessary variables according to the time units you want
- * to count. Notice that in order to have, for instace, 100 ms you need first 
+ * to count. Notice that in order to have, for instace, 100 ms you need first
  * the 10 ms variable. The 200 us unit is always available. :cfg01 */
 	static uint8_t t1ms_n200us = 0;
 	static uint8_t t10ms_n200us = 0;
@@ -104,7 +111,7 @@ void TIME_task(void) {
 	TIME_last_time = TIME_curr_time;
 
 	enable_interrupts; /* Check node.h */
-	
+
 /* Enable the needed sections bellow according to the time units you are tracking. */
 
 /* 200 us timers
@@ -136,6 +143,7 @@ void TIME_task(void) {
 		t10ms_n200us -= TIME_10MS_N200US; /* 10 ms = 50 * 200 us */
 		++LED_timer;
 		++ROBOT_timer_adc;
+		++ROBOT_timer_sonar;
 		/*++MODULEXXX_timer; :cfg02*/
 
 		/* 50 ms timers (needs 10 ms)
@@ -168,7 +176,7 @@ void TIME_task(void) {
 				t1s_n10ms = 0; /* 1 s = 100 * 10 ms */
 				//++EXAMPLE_timer_adc;
 				/*++MODULEXXX_timer; :cfg02*/
-			
+
 				/* 1 min timers (needs 1 s)
 				 * var char:  1-255 => 1m - 255m (~4.2h)
 				 * var int: 1-65535 => 1m - 65535m (~1092h, ~45.5d) */

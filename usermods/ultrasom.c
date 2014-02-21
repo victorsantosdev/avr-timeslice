@@ -46,7 +46,7 @@ unsigned int getPulseWidth(void)
 		}
 	}
 	if (i == 600000) {
-		return US_ERROR; 	//Indicates time out
+		return US_ERROR1; 	//Indicates time out 1
 	}
 	//High Edge Found
 	//Setup Timer1
@@ -70,7 +70,7 @@ unsigned int getPulseWidth(void)
 	}
 
 	if (i == 600000) {
-		return US_ERROR; //Indicates time out
+		return US_ERROR2; //Indicates time out 2
 	}
 	//Falling edge found
 	result = TCNT1;
@@ -88,12 +88,11 @@ Function: get_UltrasoundData
 Purpose:  returns the Ultrasonic data sensor read in centimeters
 Parameters: integer pointer to the variable you want to grab the distance in centimeters
  **************************************************************************/
-//uint8_t get_UltrasoundData(void)
-uint8_t get_UltrasoundData(int* distance_read)
+unsigned int get_UltrasoundData(void)
+//uint8_t get_UltrasoundData(int* distance_read)
 {
-	uint8_t distance_cm = 0;
+	unsigned int distance_cm = 0;
 	unsigned int resp;
-	uint8_t obstaculo_sonar = 0;
 
 	//Set Ultra Sonic Port as out
 	//set trigger port as output
@@ -106,36 +105,13 @@ uint8_t get_UltrasoundData(int* distance_read)
 	mydelay_us(10);
 	//trigger pin turn back to LOW
 	ULTRASOUND_SHIELD_PORT &= ~_BV(ULTRASOUND1_TRIG);
-
 	//set echo as input
 	ULTRASOUND_SHIELD_DDR &= ~_BV(ULTRASOUND1_ECHO);
-
 	//Measure the width of pulse
 	resp = getPulseWidth();
-
-	//Handle Errors
-	if (resp == US_ERROR) {
-		//printf("ERROR. \n");
-	} else if (resp == US_NO_OBSTACLE) {
-		//printf("clear\r");
-	} else {
-		distance_cm = (resp / 58); //Convert to cm
-		*distance_read = distance_cm;
-		//printf("sonar_distance: %d\n", distance_cm);
-	}
-	/* distance value adjust by the user desire*/
-	if (distance_cm >= 200 || distance_cm <= 0) {
-		obstaculo_sonar = 2;
-		//printf("out of distance\n");
-	} else {
-		if (distance_cm < 10) { /* 10 centimeters */
-			obstaculo_sonar = 1;
-			//printf("obstacle!\n");
-		} else {
-			obstaculo_sonar = 0;
-		}
-	}
-	return obstaculo_sonar;
+	distance_cm = (resp / 58); //Convert to cm
+	printf("DISTANCE_CM: %d\n", distance_cm);
+	return distance_cm;
 }
 
 /*************************************************************************

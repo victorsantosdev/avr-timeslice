@@ -24,12 +24,13 @@
 #define ULTRASOUND1_ECHO                PC1             //output
 #define ULTRASOUND1_TRIG                PC2             //output
 
-#define US_ERROR                        0xFFFF
-#define  US_NO_OBSTACLE                 0xFFFE
+#define US_ERROR1                       0xFFFF //timeour 1
+#define US_ERROR2                       0xF0F0 //timeout 2
+#define  US_NO_OBSTACLE                 0xFAB5
 
 unsigned int getPulseWidth(void);
-//uint8_t get_UltrasoundData(void);
-uint8_t get_UltrasoundData(int* distance_read);
+unsigned int get_UltrasoundData(void);
+//uint8_t get_UltrasoundData(int* distance_read);
 //uint8_t sweep_sonar(void);
 uint8_t sweep_sonar(int *distance_read);
 

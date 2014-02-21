@@ -15,13 +15,16 @@
 #include "myDelay.h"
 #include "stdio.h"
 
-#define SENSOR_IR_DDR	DDRC
-#define SENSOR_IR_PORT	PORTC
-#define SENSOR_IR_PIN	PINC
-#define SENSOR_IR_BIT	PC0
-#define ALARM_DDR 	DDRB
-#define ALARM_PORT	PORTB
-#define ALARM_BIT	PB0
+#define SENSOR_IR_DDR		DDRC
+#define SENSOR_IR_PORT		PORTC
+#define SENSOR_IR_PIN		PINC
+#define SENSOR_IR_BIT		PC0
+#define ALARM_DDR_RED 		DDRB
+#define ALARM_DDR_GREEN 	DDRC
+#define ALARM_PORT_RED		PORTB
+#define ALARM_PORT_GREEN	PORTC
+#define ALARM_BIT_RED		PB0
+#define ALARM_BIT_GREEN		PC3
 
 uint8_t verificaObstaculoIR(void);
 void obstacleAlarm(void);

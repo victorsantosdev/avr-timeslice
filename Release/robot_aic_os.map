@@ -58,6 +58,7 @@ Archive member included because of file (symbol)
 Allocating common symbols
 Common symbol       size              file
 
+ROBOT_timer_sonar   0x1               ./usermods/robot.o
 EXAMPLE_timer_pwm   0x1               ./usermods/example.o
 ROBOT_timer_uart    0x1               ./usermods/robot.o
 PWM_head            0x2               ./sysmods/pwm.o
@@ -200,7 +201,7 @@ LOAD /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x2088
+.text           0x0000000000000000     0x2176
  *(.vectors)
  .vectors       0x0000000000000000       0x68 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/crtm328p.o
                 0x0000000000000000                __vectors
@@ -265,9 +266,9 @@ LOAD /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a
                 0x00000000000000a2                __vector_3
                 0x00000000000000a2                __vector_23
                 0x00000000000000a2                __vector_25
+                0x00000000000000a2                __vector_11
                 0x00000000000000a2                __vector_13
                 0x00000000000000a2                __vector_17
-                0x00000000000000a2                __vector_7
                 0x00000000000000a2                __vector_5
                 0x00000000000000a2                __vector_4
                 0x00000000000000a2                __vector_9
@@ -359,310 +360,310 @@ LOAD /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a
                 0x000000000000099c       0x12 ./usermods/myDelay.o
                 0x000000000000099c                mydelay_us
  .text.ROBOT_init
-                0x00000000000009ae        0x8 ./usermods/robot.o
+                0x00000000000009ae        0x2 ./usermods/robot.o
                 0x00000000000009ae                ROBOT_init
  .text.ROBOT_task
-                0x00000000000009b6      0x1d6 ./usermods/robot.o
-                0x00000000000009b6                ROBOT_task
+                0x00000000000009b0      0x2d4 ./usermods/robot.o
+                0x00000000000009b0                ROBOT_task
  .text.obstacleAlarm
-                0x0000000000000b8c       0x20 ./usermods/sensorIR.o
-                0x0000000000000b8c                obstacleAlarm
+                0x0000000000000c84       0x20 ./usermods/sensorIR.o
+                0x0000000000000c84                obstacleAlarm
  .text.ir_convertToDistance
-                0x0000000000000bac       0x16 ./usermods/sensorIR.o
-                0x0000000000000bac                ir_convertToDistance
+                0x0000000000000ca4       0x16 ./usermods/sensorIR.o
+                0x0000000000000ca4                ir_convertToDistance
  .text.verificaObstaculoIR
-                0x0000000000000bc2       0x48 ./usermods/sensorIR.o
-                0x0000000000000bc2                verificaObstaculoIR
+                0x0000000000000cba       0x48 ./usermods/sensorIR.o
+                0x0000000000000cba                verificaObstaculoIR
  .text.__vector_18
-                0x0000000000000c0a       0x66 ./usermods/uart.o
-                0x0000000000000c0a                __vector_18
+                0x0000000000000d02       0x66 ./usermods/uart.o
+                0x0000000000000d02                __vector_18
  .text.__vector_19
-                0x0000000000000c70       0x54 ./usermods/uart.o
-                0x0000000000000c70                __vector_19
+                0x0000000000000d68       0x54 ./usermods/uart.o
+                0x0000000000000d68                __vector_19
  .text.uart_init
-                0x0000000000000cc4       0x32 ./usermods/uart.o
-                0x0000000000000cc4                uart_init
+                0x0000000000000dbc       0x32 ./usermods/uart.o
+                0x0000000000000dbc                uart_init
  .text.uart_getc
-                0x0000000000000cf6       0x38 ./usermods/uart.o
-                0x0000000000000cf6                uart_getc
+                0x0000000000000dee       0x38 ./usermods/uart.o
+                0x0000000000000dee                uart_getc
  .text.uart_putc
-                0x0000000000000d2e       0x2a ./usermods/uart.o
-                0x0000000000000d2e                uart_putc
+                0x0000000000000e26       0x2a ./usermods/uart.o
+                0x0000000000000e26                uart_putc
  .text.uart_puts
-                0x0000000000000d58       0x3c ./usermods/uart.o
-                0x0000000000000d58                uart_puts
+                0x0000000000000e50       0x3c ./usermods/uart.o
+                0x0000000000000e50                uart_puts
  .text.uart_puts_p
-                0x0000000000000d94       0x44 ./usermods/uart.o
-                0x0000000000000d94                uart_puts_p
+                0x0000000000000e8c       0x44 ./usermods/uart.o
+                0x0000000000000e8c                uart_puts_p
  .text.usart_putchar_printf
-                0x0000000000000dd8       0x5e ./usermods/uart.o
-                0x0000000000000dd8                usart_putchar_printf
+                0x0000000000000ed0       0x5e ./usermods/uart.o
+                0x0000000000000ed0                usart_putchar_printf
  .text.uart_available
-                0x0000000000000e36       0x1a ./usermods/uart.o
-                0x0000000000000e36                uart_available
+                0x0000000000000f2e       0x1a ./usermods/uart.o
+                0x0000000000000f2e                uart_available
  .text.uart_flush
-                0x0000000000000e50        0xa ./usermods/uart.o
-                0x0000000000000e50                uart_flush
+                0x0000000000000f48        0xa ./usermods/uart.o
+                0x0000000000000f48                uart_flush
  .text.getPulseWidth
-                0x0000000000000e5a       0x9c ./usermods/ultrasom.o
-                0x0000000000000e5a                getPulseWidth
+                0x0000000000000f52       0xa0 ./usermods/ultrasom.o
+                0x0000000000000f52                getPulseWidth
  .text.get_UltrasoundData
-                0x0000000000000ef6       0x72 ./usermods/ultrasom.o
-                0x0000000000000ef6                get_UltrasoundData
+                0x0000000000000ff2       0x5a ./usermods/ultrasom.o
+                0x0000000000000ff2                get_UltrasoundData
  .text.sweep_sonar
-                0x0000000000000f68       0x24 ./usermods/ultrasom.o
-                0x0000000000000f68                sweep_sonar
- .text.rotate   0x0000000000000f8c       0x70 ./usermods/ultrasom_stepper.o
-                0x0000000000000f8c                rotate
+                0x000000000000104c       0x24 ./usermods/ultrasom.o
+                0x000000000000104c                sweep_sonar
+ .text.rotate   0x0000000000001070       0x70 ./usermods/ultrasom_stepper.o
+                0x0000000000001070                rotate
  .text.set_stepper_zero
-                0x0000000000000ffc       0x22 ./usermods/ultrasom_stepper.o
-                0x0000000000000ffc                set_stepper_zero
+                0x00000000000010e0       0x22 ./usermods/ultrasom_stepper.o
+                0x00000000000010e0                set_stepper_zero
  .text.sonar_rotate
-                0x000000000000101e       0xa0 ./usermods/ultrasom_stepper.o
-                0x000000000000101e                sonar_rotate
+                0x0000000000001102       0xa0 ./usermods/ultrasom_stepper.o
+                0x0000000000001102                sonar_rotate
  .text.rotateDeg
-                0x00000000000010be       0xc4 ./usermods/ultrasom_stepper.o
-                0x00000000000010be                rotateDeg
+                0x00000000000011a2       0xc4 ./usermods/ultrasom_stepper.o
+                0x00000000000011a2                rotateDeg
  .text.stepper_sweep
-                0x0000000000001182       0x28 ./usermods/ultrasom_stepper.o
-                0x0000000000001182                stepper_sweep
+                0x0000000000001266       0x28 ./usermods/ultrasom_stepper.o
+                0x0000000000001266                stepper_sweep
  .text.ADC_init_10bit
-                0x00000000000011aa       0x16 ./sysmods/adc.o
-                0x00000000000011aa                ADC_init_10bit
+                0x000000000000128e       0x16 ./sysmods/adc.o
+                0x000000000000128e                ADC_init_10bit
  .text.ADC_init_8bit
-                0x00000000000011c0       0x16 ./sysmods/adc.o
-                0x00000000000011c0                ADC_init_8bit
+                0x00000000000012a4       0x16 ./sysmods/adc.o
+                0x00000000000012a4                ADC_init_8bit
  .text.ADC_read_10bit
-                0x00000000000011d6       0x32 ./sysmods/adc.o
-                0x00000000000011d6                ADC_read_10bit
+                0x00000000000012ba       0x32 ./sysmods/adc.o
+                0x00000000000012ba                ADC_read_10bit
  .text.ADC_read_8bit
-                0x0000000000001208       0x2c ./sysmods/adc.o
-                0x0000000000001208                ADC_read_8bit
- .text.ADC_off  0x0000000000001234        0xc ./sysmods/adc.o
-                0x0000000000001234                ADC_off
+                0x00000000000012ec       0x2c ./sysmods/adc.o
+                0x00000000000012ec                ADC_read_8bit
+ .text.ADC_off  0x0000000000001318        0xc ./sysmods/adc.o
+                0x0000000000001318                ADC_off
  .text.ADC_ref_AVCC
-                0x0000000000001240       0x12 ./sysmods/adc.o
-                0x0000000000001240                ADC_ref_AVCC
+                0x0000000000001324       0x12 ./sysmods/adc.o
+                0x0000000000001324                ADC_ref_AVCC
  .text.ADC_ref_1V
-                0x0000000000001252        0xc ./sysmods/adc.o
-                0x0000000000001252                ADC_ref_1V
+                0x0000000000001336        0xc ./sysmods/adc.o
+                0x0000000000001336                ADC_ref_1V
  .text.DIGITALRW_toggle_func
-                0x000000000000125e       0x18 ./sysmods/digitalrw.o
-                0x000000000000125e                DIGITALRW_toggle_func
+                0x0000000000001342       0x18 ./sysmods/digitalrw.o
+                0x0000000000001342                DIGITALRW_toggle_func
  .text.DIGITALRW_init
-                0x0000000000001276        0x2 ./sysmods/digitalrw.o
-                0x0000000000001276                DIGITALRW_init
+                0x000000000000135a        0x2 ./sysmods/digitalrw.o
+                0x000000000000135a                DIGITALRW_init
  .text.DIGITALRW_write_timed
-                0x0000000000001278       0x74 ./sysmods/digitalrw.o
-                0x0000000000001278                DIGITALRW_write_timed
+                0x000000000000135c       0x74 ./sysmods/digitalrw.o
+                0x000000000000135c                DIGITALRW_write_timed
  .text.DIGITALRW_task
-                0x00000000000012ec       0x1c ./sysmods/digitalrw.o
-                0x00000000000012ec                DIGITALRW_task
+                0x00000000000013d0       0x1c ./sysmods/digitalrw.o
+                0x00000000000013d0                DIGITALRW_task
  .text.LED_init
-                0x0000000000001308        0xa ./sysmods/led.o
-                0x0000000000001308                LED_init
+                0x00000000000013ec        0xa ./sysmods/led.o
+                0x00000000000013ec                LED_init
  .text.LED_task
-                0x0000000000001312       0x3e ./sysmods/led.o
-                0x0000000000001312                LED_task
+                0x00000000000013f6       0x3e ./sysmods/led.o
+                0x00000000000013f6                LED_task
  .text.LIST_insert
-                0x0000000000001350       0x7e ./sysmods/list.o
-                0x0000000000001350                LIST_insert
+                0x0000000000001434       0x7e ./sysmods/list.o
+                0x0000000000001434                LIST_insert
  .text.LIST_remove_expired
-                0x00000000000013ce       0xa6 ./sysmods/list.o
-                0x00000000000013ce                LIST_remove_expired
+                0x00000000000014b2       0xa6 ./sysmods/list.o
+                0x00000000000014b2                LIST_remove_expired
  .text.PWM_reset_expired
-                0x0000000000001474        0x8 ./sysmods/pwm.o
-                0x0000000000001474                PWM_reset_expired
+                0x0000000000001558        0x8 ./sysmods/pwm.o
+                0x0000000000001558                PWM_reset_expired
  .text.PWM_init
-                0x000000000000147c       0x64 ./sysmods/pwm.o
-                0x000000000000147c                PWM_init
+                0x0000000000001560       0x64 ./sysmods/pwm.o
+                0x0000000000001560                PWM_init
  .text.PWM_write_timed
-                0x00000000000014e0       0x36 ./sysmods/pwm.o
-                0x00000000000014e0                PWM_write_timed
+                0x00000000000015c4       0x36 ./sysmods/pwm.o
+                0x00000000000015c4                PWM_write_timed
  .text.PWM_task
-                0x0000000000001516       0x1c ./sysmods/pwm.o
-                0x0000000000001516                PWM_task
+                0x00000000000015fa       0x1c ./sysmods/pwm.o
+                0x00000000000015fa                PWM_task
  .text.TIME_init
-                0x0000000000001532       0x1a ./sysmods/time.o
-                0x0000000000001532                TIME_init
- .text.__vector_11
-                0x000000000000154c       0x3c ./sysmods/time.o
-                0x000000000000154c                __vector_11
+                0x0000000000001616       0x18 ./sysmods/time.o
+                0x0000000000001616                TIME_init
+ .text.__vector_7
+                0x000000000000162e       0x34 ./sysmods/time.o
+                0x000000000000162e                __vector_7
  .text.TIME_task
-                0x0000000000001588       0xda ./sysmods/time.o
-                0x0000000000001588                TIME_task
+                0x0000000000001662       0xe4 ./sysmods/time.o
+                0x0000000000001662                TIME_task
  .text.UART_putchar
-                0x0000000000001662       0x20 ./sysmods/uart.o
-                0x0000000000001662                UART_putchar
+                0x0000000000001746       0x20 ./sysmods/uart.o
+                0x0000000000001746                UART_putchar
  .text.UART_getchar
-                0x0000000000001682        0xe ./sysmods/uart.o
-                0x0000000000001682                UART_getchar
+                0x0000000000001766        0xe ./sysmods/uart.o
+                0x0000000000001766                UART_getchar
  .text.UART_init
-                0x0000000000001690       0x3a ./sysmods/uart.o
-                0x0000000000001690                UART_init
+                0x0000000000001774       0x3a ./sysmods/uart.o
+                0x0000000000001774                UART_init
  .text.avr_init
-                0x00000000000016ca        0x4 ./main.o
-                0x00000000000016ca                avr_init
+                0x00000000000017ae        0x4 ./main.o
+                0x00000000000017ae                avr_init
  .text.timer0_init
-                0x00000000000016ce       0x48 ./main.o
-                0x00000000000016ce                timer0_init
+                0x00000000000017b2       0x48 ./main.o
+                0x00000000000017b2                timer0_init
  .text.ADC_init
-                0x0000000000001716       0x84 ./main.o
-                0x0000000000001716                ADC_init
+                0x00000000000017fa       0x84 ./main.o
+                0x00000000000017fa                ADC_init
  .text.uartInit
-                0x000000000000179a       0x16 ./main.o
-                0x000000000000179a                uartInit
- .text.buzzer_init
-                0x00000000000017b0        0x4 ./main.o
-                0x00000000000017b0                buzzer_init
+                0x000000000000187e       0x16 ./main.o
+                0x000000000000187e                uartInit
+ .text.alarm_init
+                0x0000000000001894        0x6 ./main.o
+                0x0000000000001894                alarm_init
  .text.startup.main
-                0x00000000000017b4       0x2e ./main.o
-                0x00000000000017b4                main
+                0x000000000000189a       0x36 ./main.o
+                0x000000000000189a                main
  .text.libgcc.mul
-                0x00000000000017e2       0x18 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
-                0x00000000000017e2                __umulhisi3
+                0x00000000000018d0       0x18 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+                0x00000000000018d0                __umulhisi3
  .text.libgcc.div
-                0x00000000000017fa        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
- .text.libgcc   0x00000000000017fa        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+                0x00000000000018e8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc   0x00000000000018e8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
  .text.libgcc.prologue
-                0x00000000000017fa        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+                0x00000000000018e8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
  .text.libgcc.builtins
-                0x00000000000017fa        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+                0x00000000000018e8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
  .text.libgcc.fmul
-                0x00000000000017fa        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+                0x00000000000018e8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
  .text.libgcc.mul
-                0x00000000000017fa        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+                0x00000000000018e8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.div
-                0x00000000000017fa       0x28 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
-                0x00000000000017fa                __divmodhi4
-                0x00000000000017fa                _div
- .text.libgcc   0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+                0x00000000000018e8       0x28 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+                0x00000000000018e8                __divmodhi4
+                0x00000000000018e8                _div
+ .text.libgcc   0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.builtins
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fmul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.mul
-                0x0000000000001822        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000001910        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.div
-                0x0000000000001822       0x28 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000000000001822                __udivmodhi4
- .text.libgcc   0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000001910       0x28 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000001910                __udivmodhi4
+ .text.libgcc   0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
-                0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.builtins
-                0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.fmul
-                0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.mul
-                0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+                0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
  .text.libgcc.div
-                0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
- .text.libgcc   0x000000000000184a        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+                0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+ .text.libgcc   0x0000000000001938        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
  .text.libgcc.prologue
-                0x000000000000184a       0x38 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
-                0x000000000000184a                __prologue_saves__
+                0x0000000000001938       0x38 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+                0x0000000000001938                __prologue_saves__
  .text.libgcc.builtins
-                0x0000000000001882        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+                0x0000000000001970        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
  .text.libgcc.fmul
-                0x0000000000001882        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+                0x0000000000001970        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
  .text.libgcc.mul
-                0x0000000000001882        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+                0x0000000000001970        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.div
-                0x0000000000001882        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
- .text.libgcc   0x0000000000001882        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+                0x0000000000001970        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+ .text.libgcc   0x0000000000001970        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.prologue
-                0x0000000000001882       0x36 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
-                0x0000000000001882                __epilogue_restores__
+                0x0000000000001970       0x36 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+                0x0000000000001970                __epilogue_restores__
  .text.libgcc.builtins
-                0x00000000000018b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+                0x00000000000019a6        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.fmul
-                0x00000000000018b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+                0x00000000000019a6        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.mul
-                0x00000000000018b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+                0x00000000000019a6        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
  .text.libgcc.div
-                0x00000000000018b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
- .text.libgcc   0x00000000000018b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+                0x00000000000019a6        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+ .text.libgcc   0x00000000000019a6        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
  .text.libgcc.prologue
-                0x00000000000018b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+                0x00000000000019a6        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
  .text.libgcc.builtins
-                0x00000000000018b8       0x12 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
-                0x00000000000018b8                __clzsi2
+                0x00000000000019a6       0x12 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+                0x00000000000019a6                __clzsi2
  .text.libgcc.fmul
-                0x00000000000018ca        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+                0x00000000000019b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
  .text.libgcc.mul
-                0x00000000000018ca        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+                0x00000000000019b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
  .text.libgcc.div
-                0x00000000000018ca        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
- .text.libgcc   0x00000000000018ca        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+                0x00000000000019b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+ .text.libgcc   0x00000000000019b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
  .text.libgcc.prologue
-                0x00000000000018ca        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+                0x00000000000019b8        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
  .text.libgcc.builtins
-                0x00000000000018ca       0x24 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
-                0x00000000000018ca                __clzhi2
+                0x00000000000019b8       0x24 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+                0x00000000000019b8                __clzhi2
  .text.libgcc.fmul
-                0x00000000000018ee        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+                0x00000000000019dc        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
  .text.avr-libc
-                0x00000000000018ee      0x26e /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(malloc.o)
-                0x00000000000018ee                malloc
-                0x0000000000001a24                free
+                0x00000000000019dc      0x26e /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(malloc.o)
+                0x00000000000019dc                malloc
+                0x0000000000001b12                free
  .text.avr-libc
-                0x0000000000001b5c       0x2e /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(printf.o)
-                0x0000000000001b5c                printf
+                0x0000000000001c4a       0x2e /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(printf.o)
+                0x0000000000001c4a                printf
  .text.avr-libc
-                0x0000000000001b8a      0x3ba /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                0x0000000000001b8a                vfprintf
+                0x0000000000001c78      0x3ba /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x0000000000001c78                vfprintf
  .text.avr-libc
-                0x0000000000001f44       0x16 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                0x0000000000001f44                strnlen_P
+                0x0000000000002032       0x16 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x0000000000002032                strnlen_P
  .text.avr-libc
-                0x0000000000001f5a       0x16 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen.o)
-                0x0000000000001f5a                strnlen
+                0x0000000000002048       0x16 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x0000000000002048                strnlen
  .text.avr-libc
-                0x0000000000001f70       0x58 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(fputc.o)
-                0x0000000000001f70                fputc
+                0x000000000000205e       0x58 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(fputc.o)
+                0x000000000000205e                fputc
  .text.avr-libc
-                0x0000000000001fc8       0xbc /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
-                0x0000000000001fc8                __ultoa_invert
-                0x0000000000002084                . = ALIGN (0x2)
+                0x00000000000020b6       0xbc /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+                0x00000000000020b6                __ultoa_invert
+                0x0000000000002172                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000002084        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
-                0x0000000000002084                exit
-                0x0000000000002084                _exit
+ .fini9         0x0000000000002172        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+                0x0000000000002172                exit
+                0x0000000000002172                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -681,11 +682,11 @@ LOAD /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000002084        0x4 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+ .fini0         0x0000000000002172        0x4 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000002088                _etext = .
+                0x0000000000002176                _etext = .
 
-.data           0x0000000000800100       0x74 load address 0x0000000000002088
+.data           0x0000000000800100       0xac load address 0x0000000000002176
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/crtm328p.o
@@ -750,143 +751,160 @@ LOAD /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a
  *(.rodata*)
  .rodata.str1.1
                 0x0000000000800138       0x3b ./usermods/example.o
+ .rodata.str1.1
+                0x0000000000800173       0x27 ./usermods/robot.o
+ .rodata.str1.1
+                0x000000000080019a       0x11 ./usermods/ultrasom.o
  *(.gnu.linkonce.d*)
-                0x0000000000800174                . = ALIGN (0x2)
- *fill*         0x0000000000800173        0x1 00
-                0x0000000000800174                _edata = .
-                0x0000000000800174                PROVIDE (__data_end, .)
+                0x00000000008001ac                . = ALIGN (0x2)
+ *fill*         0x00000000008001ab        0x1 00
+                0x00000000008001ac                _edata = .
+                0x00000000008001ac                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800174       0x76
-                0x0000000000800174                PROVIDE (__bss_start, .)
+.bss            0x00000000008001ac       0x7d
+                0x00000000008001ac                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/crtm328p.o
- .bss           0x0000000000800174        0x0 ./usermods/example.o
- .bss           0x0000000000800174        0x0 ./usermods/motores.o
- .bss           0x0000000000800174        0x0 ./usermods/myDelay.o
- .bss           0x0000000000800174        0x0 ./usermods/robot.o
- .bss           0x0000000000800174        0x0 ./usermods/sensorIR.o
- .bss           0x0000000000800174        0x0 ./usermods/uart.o
- .bss           0x0000000000800174        0x0 ./usermods/ultrasom.o
- .bss           0x0000000000800174        0x0 ./usermods/ultrasom_stepper.o
- .bss           0x0000000000800174        0x0 ./sysmods/adc.o
- .bss           0x0000000000800174        0x0 ./sysmods/digitalrw.o
- .bss           0x0000000000800174        0x0 ./sysmods/led.o
- .bss           0x0000000000800174        0x0 ./sysmods/list.o
- .bss           0x0000000000800174        0x0 ./sysmods/pwm.o
- .bss           0x0000000000800174        0x0 ./sysmods/time.o
- .bss           0x0000000000800174        0x0 ./sysmods/uart.o
- .bss           0x0000000000800174        0x0 ./main.o
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_mul_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_div_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_gt_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_si_to_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_sf_to_si.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_thenan_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_pack_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_unpack_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_fpcmp_parts_sf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(malloc.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(iob.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(printf.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen_P.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(fputc.o)
- .bss           0x0000000000800174        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/crtm328p.o
+ .bss           0x00000000008001ac        0x0 ./usermods/example.o
+ .bss           0x00000000008001ac        0x0 ./usermods/motores.o
+ .bss           0x00000000008001ac        0x0 ./usermods/myDelay.o
+ .bss           0x00000000008001ac        0x0 ./usermods/robot.o
+ .bss           0x00000000008001ac        0x0 ./usermods/sensorIR.o
+ .bss           0x00000000008001ac        0x0 ./usermods/uart.o
+ .bss           0x00000000008001ac        0x0 ./usermods/ultrasom.o
+ .bss           0x00000000008001ac        0x0 ./usermods/ultrasom_stepper.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/adc.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/digitalrw.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/led.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/list.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/pwm.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/time.o
+ .bss           0x00000000008001ac        0x0 ./sysmods/uart.o
+ .bss           0x00000000008001ac        0x0 ./main.o
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_umulhisi3.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_divmodhi4.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_exit.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_copy_data.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clear_bss.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_mul_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_div_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_gt_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_si_to_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_sf_to_si.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_thenan_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_udivmodhi4.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_prologue.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_epilogue.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzsi2.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_clzhi2.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_pack_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_unpack_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/avr5/libgcc.a(_fpcmp_parts_sf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(malloc.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(iob.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(printf.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen_P.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(strnlen.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(fputc.o)
+ .bss           0x00000000008001ac        0x0 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
  *(.bss*)
- .bss.count_uart.2231
-                0x0000000000800174        0x1 ./usermods/robot.o
- .bss.received.2235
-                0x0000000000800175        0x1 ./usermods/robot.o
- .bss.autonomous_flag.2238
-                0x0000000000800176        0x1 ./usermods/robot.o
- .bss.IR_obstaculo.2236
-                0x0000000000800177        0x2 ./usermods/robot.o
- .bss.flag_autonomous_obstacle.2239
-                0x0000000000800179        0x1 ./usermods/robot.o
- .bss.count_adc.2233
-                0x000000000080017a        0x1 ./usermods/robot.o
- .bss.obstacle_flag.2237
-                0x000000000080017b        0x1 ./usermods/robot.o
- .bss.ciclosClock_motor.2234
-                0x000000000080017c        0x1 ./usermods/robot.o
- .bss.count_pwm.2232
-                0x000000000080017d        0x1 ./usermods/robot.o
+ .bss.count_uart.2255
+                0x00000000008001ac        0x1 ./usermods/robot.o
+ .bss.received.2260
+                0x00000000008001ad        0x1 ./usermods/robot.o
+ .bss.autonomous_flag.2266
+                0x00000000008001ae        0x1 ./usermods/robot.o
+ .bss.IR_obstaculo.2261
+                0x00000000008001af        0x1 ./usermods/robot.o
+ .bss.flag_autonomous_obstacle_ir.2267
+                0x00000000008001b0        0x1 ./usermods/robot.o
+ .bss.count_adc.2257
+                0x00000000008001b1        0x1 ./usermods/robot.o
+ .bss.obstacle_flag_ir.2264
+                0x00000000008001b2        0x1 ./usermods/robot.o
+ .bss.SONAR_obstaculo.2262
+                0x00000000008001b3        0x2 ./usermods/robot.o
+ .bss.flag_autonomous_obstacle_sonar.2268
+                0x00000000008001b5        0x1 ./usermods/robot.o
+ .bss.flag_autonomous_obstacle.2269
+                0x00000000008001b6        0x1 ./usermods/robot.o
+ .bss.count_sonar.2258
+                0x00000000008001b7        0x1 ./usermods/robot.o
+ .bss.obstacle_flag_sonar.2263
+                0x00000000008001b8        0x1 ./usermods/robot.o
+ .bss.obstacle_flag.2265
+                0x00000000008001b9        0x1 ./usermods/robot.o
+ .bss.ciclosClock_motor.2259
+                0x00000000008001ba        0x1 ./usermods/robot.o
+ .bss.count_pwm.2256
+                0x00000000008001bb        0x1 ./usermods/robot.o
  .bss.UART_LastRxError
-                0x000000000080017e        0x1 ./usermods/uart.o
+                0x00000000008001bc        0x1 ./usermods/uart.o
  .bss.UART_RxTail
-                0x000000000080017f        0x1 ./usermods/uart.o
+                0x00000000008001bd        0x1 ./usermods/uart.o
  .bss.UART_RxHead
-                0x0000000000800180        0x1 ./usermods/uart.o
+                0x00000000008001be        0x1 ./usermods/uart.o
  .bss.UART_TxTail
-                0x0000000000800181        0x1 ./usermods/uart.o
+                0x00000000008001bf        0x1 ./usermods/uart.o
  .bss.UART_TxHead
-                0x0000000000800182        0x1 ./usermods/uart.o
+                0x00000000008001c0        0x1 ./usermods/uart.o
  .bss.UART_RxBuf
-                0x0000000000800183       0x20 ./usermods/uart.o
+                0x00000000008001c1       0x20 ./usermods/uart.o
  .bss.UART_TxBuf
-                0x00000000008001a3       0x20 ./usermods/uart.o
+                0x00000000008001e1       0x20 ./usermods/uart.o
  .bss.led_num_toggles
-                0x00000000008001c3        0x1 ./sysmods/led.o
+                0x0000000000800201        0x1 ./sysmods/led.o
  .bss.led_toggle_n.1553
-                0x00000000008001c4        0x1 ./sysmods/led.o
+                0x0000000000800202        0x1 ./sysmods/led.o
  .bss.TIME_curr_time
-                0x00000000008001c5        0x1 ./sysmods/time.o
+                0x0000000000800203        0x1 ./sysmods/time.o
  .bss.TIME_last_time
-                0x00000000008001c6        0x1 ./sysmods/time.o
- .bss.t1ms_n200us.1595
-                0x00000000008001c7        0x1 ./sysmods/time.o
- .bss.t10ms_n200us.1596
-                0x00000000008001c8        0x1 ./sysmods/time.o
- .bss.t50ms_n10ms.1597
-                0x00000000008001c9        0x1 ./sysmods/time.o
- .bss.t100ms_n10ms.1598
-                0x00000000008001ca        0x1 ./sysmods/time.o
+                0x0000000000800204        0x1 ./sysmods/time.o
+ .bss.t1ms_n200us.1776
+                0x0000000000800205        0x1 ./sysmods/time.o
+ .bss.t10ms_n200us.1777
+                0x0000000000800206        0x1 ./sysmods/time.o
+ .bss.t50ms_n10ms.1778
+                0x0000000000800207        0x1 ./sysmods/time.o
+ .bss.t100ms_n10ms.1779
+                0x0000000000800208        0x1 ./sysmods/time.o
  *(COMMON)
- COMMON         0x00000000008001cb        0x4 ./usermods/example.o
-                0x00000000008001cb                EXAMPLE_timer_pwm
-                0x00000000008001cc                second
-                0x00000000008001cd                EXAMPLE_timer_adc
-                0x00000000008001ce                pwm_value
- COMMON         0x00000000008001cf        0x3 ./usermods/robot.o
-                0x00000000008001cf                ROBOT_timer_uart
-                0x00000000008001d0                ROBOT_timer_adc
-                0x00000000008001d1                ROBOT_timer_pwm
- COMMON         0x00000000008001d2        0x1 ./usermods/uart.o
-                0x00000000008001d2                autonomous
- COMMON         0x00000000008001d3        0x6 ./sysmods/digitalrw.o
-                0x00000000008001d3                DIGITALRW_head
-                0x00000000008001d5                DIGITALRW_timer
- COMMON         0x00000000008001d9        0x1 ./sysmods/led.o
-                0x00000000008001d9                LED_timer
- COMMON         0x00000000008001da        0x6 ./sysmods/pwm.o
-                0x00000000008001da                PWM_head
-                0x00000000008001dc                PWM_timer
- COMMON         0x00000000008001e0        0x4 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(malloc.o)
-                0x00000000008001e0                __brkval
-                0x00000000008001e2                __flp
- COMMON         0x00000000008001e4        0x6 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(iob.o)
-                0x00000000008001e4                __iob
-                0x00000000008001ea                PROVIDE (__bss_end, .)
-                0x0000000000002088                __data_load_start = LOADADDR (.data)
-                0x00000000000020fc                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000800209        0x4 ./usermods/example.o
+                0x0000000000800209                EXAMPLE_timer_pwm
+                0x000000000080020a                second
+                0x000000000080020b                EXAMPLE_timer_adc
+                0x000000000080020c                pwm_value
+ COMMON         0x000000000080020d        0x4 ./usermods/robot.o
+                0x000000000080020d                ROBOT_timer_sonar
+                0x000000000080020e                ROBOT_timer_uart
+                0x000000000080020f                ROBOT_timer_adc
+                0x0000000000800210                ROBOT_timer_pwm
+ COMMON         0x0000000000800211        0x1 ./usermods/uart.o
+                0x0000000000800211                autonomous
+ COMMON         0x0000000000800212        0x6 ./sysmods/digitalrw.o
+                0x0000000000800212                DIGITALRW_head
+                0x0000000000800214                DIGITALRW_timer
+ COMMON         0x0000000000800218        0x1 ./sysmods/led.o
+                0x0000000000800218                LED_timer
+ COMMON         0x0000000000800219        0x6 ./sysmods/pwm.o
+                0x0000000000800219                PWM_head
+                0x000000000080021b                PWM_timer
+ COMMON         0x000000000080021f        0x4 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(malloc.o)
+                0x000000000080021f                __brkval
+                0x0000000000800221                __flp
+ COMMON         0x0000000000800223        0x6 /usr/lib/gcc/avr/4.7.2/../../../avr/lib/avr5/libc.a(iob.o)
+                0x0000000000800223                __iob
+                0x0000000000800229                PROVIDE (__bss_end, .)
+                0x0000000000002176                __data_load_start = LOADADDR (.data)
+                0x0000000000002222                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00000000008001ea        0x0
-                0x00000000008001ea                PROVIDE (__noinit_start, .)
+.noinit         0x0000000000800229        0x0
+                0x0000000000800229                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00000000008001ea                PROVIDE (__noinit_end, .)
-                0x00000000008001ea                _end = .
-                0x00000000008001ea                PROVIDE (__heap_start, .)
+                0x0000000000800229                PROVIDE (__noinit_end, .)
+                0x0000000000800229                _end = .
+                0x0000000000800229                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)

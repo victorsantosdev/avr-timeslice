@@ -1,4 +1,5 @@
-robot_aic_os
+Time-Slice testing
 ============
 
-same robot did all in C, now I am using a round robin task scheduler to order the functions in timing
+This robot was developed in ANSI C language to test the time-slice concept using AVR 8 bit microcontrollers such as ATMEGA328P.
+The main file is located at usermod/robot.c
